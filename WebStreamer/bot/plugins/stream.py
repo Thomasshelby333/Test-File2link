@@ -34,7 +34,7 @@ def get_media_file_name(m):
 @StreamBot.on_message(filters.private & (filters.document | filters.video | filters.audio), group=4)
 async def private_receive_handler(c: Client, m: Message):
     # lang = getattr(Language, m.from_user.language_code)
-    lang = getattr(Language, "en")
+   # lang = getattr(Language, "en")
     # Check The User is Banned or Not
     if await db.is_user_banned(m.from_user.id):
         await b.send_message(
