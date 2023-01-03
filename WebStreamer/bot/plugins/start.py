@@ -67,7 +67,7 @@ def get_media_file_name(m):
 @StreamBot.on_message(filters.command('start') & filters.private)
 async def start(b, m):
     # lang = getattr(Language, m.from_user.language_code)
-    lang = getattr(Language, "en")
+    #lang = getattr(Language, "en")
     # Check The User is Banned or Not
     if await db.is_user_banned(m.from_user.id):
         await b.send_message(
@@ -194,7 +194,7 @@ async def start(bot, update):
 @StreamBot.on_message(filters.command('help') & filters.private)
 async def help_handler(bot, message):
     # lang = getattr(Language, m.from_user.language_code)
-    lang = getattr(Language, "en")
+    #lang = getattr(Language, "en")
     # Check The User is Banned or Not
     if await db.is_user_banned(m.from_user.id):
         await b.send_message(
