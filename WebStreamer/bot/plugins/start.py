@@ -193,6 +193,17 @@ async def start(bot, update):
 
 @StreamBot.on_message(filters.command('help') & filters.private)
 async def help_handler(bot, message):
+    # lang = getattr(Language, m.from_user.language_code)
+    lang = getattr(Language, "en")
+    # Check The User is Banned or Not
+    if await db.is_user_banned(m.from_user.id):
+        await b.send_message(
+                chat_id=m.chat.id,
+                text=lang.ban_text.format(Var.OWNER_ID),
+                parse_mode=ParseMode.MARKDOWN,
+                disable_web_page_preview=True
+            )
+        return
     if not await db.is_user_exist(message.from_user.id):
         await db.add_user(message.from_user.id)
         await bot.send_message(
