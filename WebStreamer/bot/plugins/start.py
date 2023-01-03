@@ -72,7 +72,7 @@ async def start(b, m):
     if await db.is_user_banned(m.from_user.id):
         await b.send_message(
                 chat_id=m.chat.id,
-                text=lang.ban_text.format(Var.OWNER_ID),
+                text=Config.BAN_TXT,
                 parse_mode=ParseMode.MARKDOWN,
                 disable_web_page_preview=True
             )
@@ -199,7 +199,7 @@ async def help_handler(bot, message):
     if await db.is_user_banned(m.from_user.id):
         await b.send_message(
                 chat_id=m.chat.id,
-                text=lang.ban_text.format(Var.OWNER_ID),
+                text=Config.BAN_TXT,
                 parse_mode=ParseMode.MARKDOWN,
                 disable_web_page_preview=True
             )
