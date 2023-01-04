@@ -70,6 +70,18 @@ GᴏᴏɢʟᴇPᴀʏ / Pᴀʏᴛᴏɴ / PʜᴏɴPᴀʏ / PᴀʏPᴀʟ
 
     DEV_TXT = "<a href=https://t.me/MrTamil_KiD/5>Cʟɪᴄᴋ Hᴇʀᴇ</a>"
 
+    ADN_COMS = """
+<b> Aᴅᴍɪɴ Cᴏᴍᴍᴀɴᴅs
+
+/ban
+
+/unban
+
+/status 
+
+/broadcast </b>
+"""
+
 ########################## BUTTONS TXT ########################## 
 
     START_BUTTONS = InlineKeyboardMarkup(
@@ -122,6 +134,12 @@ GᴏᴏɢʟᴇPᴀʏ / Pᴀʏᴛᴏɴ / PʜᴏɴPᴀʏ / PᴀʏPᴀʟ
         InlineKeyboardButton('๑۩ tค๓เl ۞ التاميل ۩๑', url='https://t.me/mr_tamil_kid'),
         ],[
         InlineKeyboardButton("≺≺ Bᴀᴄᴋ", callback_data = "about"),
+        InlineKeyboardButton("🗑 Cʟᴏsᴇ", callback_data = "close")
+        ]]
+    ) 
+
+    ADN_BUTTONS = InlineKeyboardMarkup( 
+        [[
         InlineKeyboardButton("🗑 Cʟᴏsᴇ", callback_data = "close")
         ]]
     ) 
