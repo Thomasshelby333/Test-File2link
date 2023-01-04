@@ -24,6 +24,13 @@ async def sts(c: Client, m: Message):
     banned_users = await db.total_banned_users_count()
     await m.reply_text(text=f"**Total Users in DB:** `{total_users}` \n**Banned Users in DB:** `{banned_users}`", parse_mode=ParseMode.MARKDOWN, quote=True)
 
+@StreamBot.on_message(filters.command("admin") & filters.private & filters.user(Var.OWNER_ID))
+async def start(bot, update):
+    await update.reply_text(
+        text=Config.ADN_COMS,
+        reply_markup=Config.ADN_BUTTONS
+    )
+
 @StreamBot.on_message(filters.command("ban") & filters.private & filters.user(Var.OWNER_ID))
 async def sts(b, m: Message):
     id = m.text.split("/ban ")[-1]
