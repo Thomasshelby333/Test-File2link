@@ -16,7 +16,7 @@ db = Database(Var.DATABASE_URL, Var.SESSION_NAME)
 
 
 caption_text = """
-
+Test
 """
 
 def get_media_file_size(m):
