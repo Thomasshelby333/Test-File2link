@@ -15,6 +15,10 @@ from pyrogram.enums.parse_mode import ParseMode
 db = Database(Var.DATABASE_URL, Var.SESSION_NAME)
 
 
+caption_text = """
+
+"""
+
 def get_media_file_size(m):
     media = m.video or m.audio or m.document
     if media and media.file_size:
@@ -110,6 +114,7 @@ async def private_receive_handler(c: Client, m: Message):
 
 
 @StreamBot.on_message(filters.channel & (filters.document | filters.video), group=-1)
+@StreamBot.on_message(filters.channel & (filters.document | filters.video | filters.audio ) & ~filters.edited, group=-1)
 async def channel_receive_handler(bot, broadcast):
     if int(broadcast.chat.id) in Var.BANNED_CHANNELS:
         await bot.leave_chat(broadcast.chat.id)
@@ -125,13 +130,13 @@ async def channel_receive_handler(bot, broadcast):
             quote=True,
             parse_mode=ParseMode.MARKDOWN
         )
-        await bot.edit_message_reply_markup(
-            chat_id=broadcast.chat.id,
-            message_id=broadcast.id,
-            reply_markup=InlineKeyboardMarkup(
-                [[InlineKeyboardButton("Dᴏᴡɴʟᴏᴀᴅ ʟɪɴᴋ 📥", url=f"https://t.me/{(await bot.get_me()).username}?start=KRBOTS_{str(log_msg.id)}")]])
-            # [[InlineKeyboardButton("Dᴏᴡɴʟᴏᴀᴅ ʟɪɴᴋ 📥", url=f"https://t.me/FxStreamBot?start=AvishkarPatil_{str(log_msg.id)}")]])
-        )
+        await bot.edit_message_caption(
+                 chat_id = message.chat.id, 
+                 message_id = message.message_id,
+                 caption = file_caption + "\n" + caption_text,
+                 parse_mode = "markdown"
+             )
+
     except FloodWait as w:
         print(f"Sleeping for {str(w.value)}s")
         await asyncio.sleep(w.value)
